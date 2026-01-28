@@ -9,4 +9,10 @@ def selection_sort(arr: list) -> list:
         The sorted list (sorted in-place, but also returned)
     """
     # YOUR IMPLEMENTATION HERE
-    pass
+    for i in range(0, len(arr)):
+        smallest_idx = i
+        for j in range(i, len(arr)):
+            if arr[j] < arr[smallest_idx]:
+                arr[j], arr[smallest_idx] = arr[smallest_idx], arr[j]
+        arr[i], arr[smallest_idx] = arr[smallest_idx], arr[i]
+    return arr

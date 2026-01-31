@@ -4,6 +4,13 @@ class BSTNode:
         self.left: BSTNode | None = None
         self.right: BSTNode | None = None
 
+    def height(self):
+        if self.val is None:
+            return 0
+        left = self.left.height() if self.left else 0
+        right = self.right.height() if self.right else 0
+        return 1 + max(left, right)
+
     def exists(self, val):
         if self.val is None:
             return False

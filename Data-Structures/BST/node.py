@@ -4,6 +4,32 @@ class BSTNode:
         self.left: BSTNode | None = None
         self.right: BSTNode | None = None
 
+    def exists(self, val):
+        if self.val is None:
+            return False
+        if self.val == val:
+            return True
+        child = self.left if val < self.val else self.right
+        return child is not None and child.exists(val)
+
+    def inorder(self, visited):
+        if self.left is not None:
+            self.left.inorder(visited)
+        if self.val is not None:
+            visited.append(self.val)
+        if self.right is not None:
+            self.right.inorder(visited)
+        return visited
+
+    def postorder(self, visited):
+        if self.left is not None:
+            self.left.postorder(visited)
+        if self.right is not None:
+            self.right.postorder(visited)
+        if self.val is not None:
+            visited.append(self.val)
+        return visited
+
     def preorder(self, visited):
         if self.val is not None:
             visited.append(self.val)

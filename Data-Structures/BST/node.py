@@ -1,11 +1,26 @@
-from concurrent.interpreters import get_main
-
-
 class BSTNode:
     def __init__(self, val) -> None:
         self.val = val
         self.left: BSTNode | None = None
         self.right: BSTNode | None = None
+
+    def preorder(self, visited):
+        if self.val is not None:
+            visited.append(self.val)
+        if self.left is not None:
+            self.left.preorder(visited)
+        if self.right is not None:
+            self.right.preorder(visited)
+        return visited
+
+    @classmethod
+    def from_preorder(cls, values):
+        if not values:
+            return None
+        root = cls(values[0])
+        for val in values[1:]:
+            root.insert(val)
+        return root
 
     def delete(self, val):
         if self.val is None:
@@ -13,20 +28,20 @@ class BSTNode:
         if val < self.val:
             if self.left is not None:
                 self.left = self.left.delete(val)
-                return self
+            return self
         elif val > self.val:
             if self.right is not None:
                 self.right = self.right.delete(val)
-                return self
+            return self
 
-        if self.left is not None and self.right is not None:
+        elif self.left is not None and self.right is not None:
             right_min = self.right.get_min()
             self.val = right_min
             self.right = self.right.delete(right_min)
             return self
 
         # One Child case (Right)
-        if self.left is None:
+        elif self.left is None:
             # Right is None here
             return self.right
         elif self.right is None:

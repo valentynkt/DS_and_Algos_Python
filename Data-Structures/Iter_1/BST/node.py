@@ -13,4 +13,6 @@ class TreeNode:
 
     def __init__(self, val):
         # TODO: Initialize val, left, right
-        pass
+        self.val = val
+        self.left = None
+        self.right = None

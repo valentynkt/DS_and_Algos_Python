@@ -1,5 +1,8 @@
+import pytest
+
+
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
+    def maxProfit(self, prices: list[int]) -> int:
         if len(prices) == 0:
             return 0
         profit = 0
@@ -10,9 +13,6 @@ class Solution:
             elif prices[i] < minimal:
                 minimal = prices[i]
         return profit
-
-
-import pytest
 
 
 @pytest.fixture

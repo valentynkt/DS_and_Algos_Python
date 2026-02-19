@@ -8,17 +8,15 @@ class Solution:
         j = len(cleaned) - 1
         if len(cleaned) <= 1:
             return True
-        result = True
         while i < j:
             left_char = cleaned[i]
             right_char = cleaned[j]
             if left_char != right_char:
-                result = False
-                break
+                return False
             i += 1
             j -= 1
 
-        return result
+        return True
 
 
 @pytest.fixture

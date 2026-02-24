@@ -9,10 +9,12 @@ class ListNode:
 
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
-        prev, curr = None, head
-        while curr:
-            temp = curr.next
-            curr.next = prev
-            prev = curr
-            curr = temp
-        return prev
+        return self.recurseReverseList(head)
+
+    def recurseReverseList(self, node: ListNode) -> ListNode:
+        if node is None or node.next is None:
+            return node
+        new_head = self.recurseReverseList(node.next)
+        node.next.next = node
+        node.next = None
+        return new_head

@@ -3,19 +3,12 @@ import pytest
 
 class Solution:
     def removeElement(self, nums: list[int], val: int) -> int:
-        i = 0
-        end = len(nums) - 1
-        while i <= end:
-            if nums[i] == val:
-                if nums[end] == val:
-                    end -= 1
-                    continue
-                nums[i], nums[end] = nums[end], nums[i]
-                end -= 1
-            else:
-                i += 1
-
-        return i
+        slow = 0
+        for fast in range(0, len(nums)):
+            if nums[fast] != val:
+                nums[slow] = nums[fast]
+                slow += 1
+        return slow
 
 
 @pytest.fixture
